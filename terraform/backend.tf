@@ -13,7 +13,7 @@ terraform {
   }
 
   cloud {
-    organization = "your-org-name"  # TODO: Replace with your Terraform Cloud organization name
+    organization = "Ipelino_250"
     
     workspaces {
       name = "devops-pipeline-infrastructure"
