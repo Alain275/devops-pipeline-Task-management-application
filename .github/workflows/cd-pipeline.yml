@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  ACR_NAME: devopspipelinedevacr
+  ACR_NAME: taskmanagementacr2025
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
