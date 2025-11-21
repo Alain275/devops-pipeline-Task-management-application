@@ -65,15 +65,15 @@
             postgres:
               image: postgres:15-alpine
               environment:
-                POSTGRES_USER: "{{ db_user }}"
-                POSTGRES_PASSWORD: "{{ db_password }}"
-                POSTGRES_DB: "{{ db_name }}"
+                POSTGRES_USER: "{{ db_user | default('postgres', true) }}"
+                POSTGRES_PASSWORD: "{{ db_password | default('taskmanager2025', true) }}"
+                POSTGRES_DB: "{{ db_name | default('taskdb', true) }}"
               volumes:
                 - postgres_data:/var/lib/postgresql/data
               ports:
                 - "5432:5432"
               healthcheck:
-                test: ["CMD-SHELL", "pg_isready -U {{ db_user }}"]
+                test: ["CMD-SHELL", "pg_isready -U {{ db_user | default('postgres', true) }}"]
                 interval: 10s
                 timeout: 5s
                 retries: 10
@@ -82,7 +82,7 @@
             backend:
               image: "{{ acr_login_server }}/devops-backend:{{ image_tag }}"
               environment:
-                DATABASE_URL: "postgresql://{{ db_user }}:{{ db_password }}@postgres:5432/{{ db_name }}"
+                DATABASE_URL: "postgresql://{{ db_user | default('postgres', true) }}:{{ db_password | default('taskmanager2025', true) }}@postgres:5432/{{ db_name | default('taskdb', true) }}"
                 NODE_ENV: production
                 PORT: 7000
               ports:
@@ -95,7 +95,7 @@
               environment:
                 VITE_API_URL: http://4.221.172.88:7000
               ports:
-                - "5173:5173"
+                - "5173:80"
               depends_on:
                 - backend
           
