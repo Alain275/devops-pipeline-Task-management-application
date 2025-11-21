@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function TaskItem({ task, toggleTask, deleteTask }) {
   return (
-    <li className={task.completed ? "completed" : ""}>
+    <li className={task.completed ? 'completed' : ''}>
       <span onClick={() => toggleTask(task.id, task.completed)}>
         {task.title}
       </span>

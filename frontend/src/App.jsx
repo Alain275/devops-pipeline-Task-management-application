@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
-import api from "./api/axios";
-import TaskList from "./components/TaskList";
-import "./styles.css";
+import React, { useState, useEffect } from 'react';
+import api from './api/axios';
+import TaskList from './components/TaskList';
+import './styles.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [title, setTitle] = useState("");
-
-  const fetchTasks = async () => {
-    const res = await api.get("/tasks");
-    setTasks(res.data);
-  };
+  const [title, setTitle] = useState('');
 
   const addTask = async () => {
     if (!title) return;
-    const res = await api.post("/tasks", { title });
+    const res = await api.post('/tasks', { title });
     setTasks([...tasks, res.data]);
-    setTitle("");
+    setTitle('');
   };
 
   const toggleTask = async (id, completed) => {
@@ -30,6 +25,10 @@ function App() {
   };
 
   useEffect(() => {
+    const fetchTasks = async () => {
+      const res = await api.get('/tasks');
+      setTasks(res.data);
+    };
     fetchTasks();
   }, []);
 
