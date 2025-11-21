@@ -84,16 +84,16 @@
               environment:
                 DATABASE_URL: postgresql://{{ db_user }}:{{ db_password }}@postgres:5432/{{ db_name }}
                 NODE_ENV: production
-                PORT: 3000
+                PORT: 7000
               ports:
-                - "3000:3000"
+                - "7000:7000"
               depends_on:
                 - postgres
             
             frontend:
               image: {{ acr_login_server }}/devops-frontend:{{ image_tag }}
               environment:
-                VITE_API_URL: http://4.221.172.88:3000
+                VITE_API_URL: http://4.221.172.88:7000
               ports:
                 - "5173:5173"
               depends_on:
@@ -120,7 +120,7 @@
 
     - name: Wait for backend to be healthy
       wait_for:
-        port: 3000
+        port: 7000
         delay: 10
         timeout: 60
 

@@ -10,6 +10,6 @@
 
  COPY . .
 
-EXPOSE 2000
+EXPOSE 7000
  CMD ["node", "src/index.js"]
 

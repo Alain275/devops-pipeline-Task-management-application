@@ -5,7 +5,7 @@ import sequelize from './config/db.js';
 import taskRoutes from './routes/taskRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 7000;
 
 app.use(cors());
 app.use(express.json());
