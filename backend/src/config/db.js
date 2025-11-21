@@ -11,12 +11,12 @@ const baseOptions = {
 
 const remoteOptions = {
   ...baseOptions,
-  dialectOptions: {
+  dialectOptions: process.env.DB_SSL === 'true' ? {
     ssl: {
       require: true,
       rejectUnauthorized: false,
     },
-  },
+  } : {},
 };
 
 const localOptions = {
