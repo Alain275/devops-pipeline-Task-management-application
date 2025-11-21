@@ -68,8 +68,8 @@ jobs:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
-          # Create SSH key file
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key.pem
+          # Create SSH key file with proper formatting
+          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key.pem
           chmod 600 ssh_key.pem
           
           # Run deployment playbook with static inventory
